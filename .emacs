@@ -6,6 +6,7 @@
 ;; My workflow revolves around the following items:
 ;;   EMACS: Howm, Org-mode for general notes/documentation
 ;;   Zotero and betterbibextension (output all reading to a .bib file)
+;;   PureBasic (Seems like a good all purpose language)
 ;;   R language  (Decent analysis software, I'm strongest in this language, I also play around using tinytex)
 ;;   LaTeX is interacted with via EMACS or R, but having a general idea of how to use it is probably helpful too. 
 ;;   File syncing service (I use dropbox because I have an old account, but one can use syncthing r an equivalent resource)
