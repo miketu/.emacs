@@ -4,7 +4,7 @@
 
 
 ;; My workflow revolves around the following items:
-;;   EMACS: Org-mode for general notes/documentation
+;;   EMACS: Org-mode for general notes/documentation with howm as the main engine
 ;;   Zotero and betterbibextension (output all reading to a .bib file)
 ;;   R language  (Decent analysis software, I'm strongest in this language, I like how it resembles mathematics. )
 ;;   LaTeX is interacted with via EMACS or R, but having a general idea of how to use it is probably helpful too. 
@@ -104,9 +104,9 @@
 
 ;;; Org-Agenda related configuration
 
-(global-set-key (kbd "C-c a") #'org-agenda)
-(global-set-key (kbd "C-c c") #'org-capture)
 
+(setq org-agenda-files (directory-files-recursively "C://Dropbox//2025" "\\.org$"))
+(setq org-agenda-inhibit-startup t)
 
 ;; Load various emacs languages
 (org-babel-do-load-languages
@@ -118,33 +118,35 @@
   
 
 
-;; Dashboard Configuration, used in conjunction with emacs bookmark
 
-(require 'dashboard)
-(dashboard-setup-startup-hook)
-(setq dashboard-week-agenda t)
-(setq dashboard-banner-logo-title
- "
- F1 to return to main menu
- C-c A for agenda
- " )
-
-(setq dashboard-footer-messages '("." "~"))
-(setq dashboard-items '((recents   . 10)
-                        (bookmarks . 5)
-                        (agenda    . 10)
-                        ))
-(setq dashboard-startupify-list '(dashboard-insert-banner-title
-				  dashboard-insert-navigator
-				  dashboard-insert-newline
-                                  dashboard-insert-items
-                                  dashboard-insert-newline
-				  dashboard-insert-footer
-				  ;dashboard-insert-init-info ;; If you want to see startup time
-                               ))
+;; howm
 
 
-(global-set-key [f1] 'dashboard-open)
+(use-package howm
+  :ensure t
+  :init
+  (require 'howm-org)
+  (setq howm-directory "C:/Dropbox/2025/")
+  (setq howm-file-name-format "%Y-%m-%d-%H%M%S.org")
+  ;; Makes HOWM compatible with org-mode
+  (setq howm-view-title-header "*")
+  ;(setq howm-dtime-format (format "%s" (cdr org-time-stamp-custom-formats)))
+  ;(setq howm-view-title-header "#+title: ")
+  (setq howm-dtime-format (format "#+date: %s" (cdr org-time-stamp-custom-formats)))
+  (setq howm-insert-date-format "<%s>")
+;
+  )
+(defadvice howm-exclude-p (around howm-suffix-only (filename) activate) ;; From https://github.com/kaorahi/howm/issues/83#issuecomment-3181303383
+  ad-do-it
+  (setq ad-return-value
+        (or ad-return-value
+            ;; include directories and *.howm
+            (not (or (file-directory-p filename)
+                     (string-match "[.]org$" filename))))))
+
+
+(howm-menu)
+
 
 ;; Macros I like (https://github.com/cloudstreet-dev/Emacs-for-Goodness-Sake/blob/main/11-macros-registers.md was very helpful)
 (defalias 'bible-verse-labeler
