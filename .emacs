@@ -4,10 +4,9 @@
 
 
 ;; My workflow revolves around the following items:
-;;   EMACS: Howm, Org-mode for general notes/documentation
+;;   EMACS: Org-mode for general notes/documentation
 ;;   Zotero and betterbibextension (output all reading to a .bib file)
-;;   Python : Most universal, easy to use language
-;;   R language  (Decent analysis software, I'm strongest in this language, I also play around using tinytex)
+;;   R language  (Decent analysis software, I'm strongest in this language, I like how it resembles mathematics. )
 ;;   LaTeX is interacted with via EMACS or R, but having a general idea of how to use it is probably helpful too. 
 ;;   File syncing service (I use dropbox because I have an old account, but one can use syncthing r an equivalent resource)
 ;;   Microsoft Word/Powerpoint/Excel is neccesary for most places I've worked at, so I can't avoid it. 
@@ -64,7 +63,7 @@
 
 
 ;; Michael's Org Mode Configurations
-;; I usually save files by year (YYYY-MM-DD format) and then search using helm-grep. Try to save plaintext as much as possible, and if neccessary I'll save images.  There is also helm-do-grep-ag for a wider search.
+;; I usually save files by year (YYYY-MM-DD format) and then search using helm-grep. Try to save plaintext as much as possible, and if neccessary I'll save images.  There is also helm-do-grep-ag for a wider search or org-agenda
 
 (setq-default org-display-custom-times t)
 (setq org-time-stamp-custom-formats '("<%Y-%m-%d>" . "<%Y-%m-%d %H:%M>"))  
@@ -75,7 +74,6 @@
   
 
 (add-hook 'org-mode-hook #'visual-line-mode)) ;;Make org start in visual line mode
-(add-hook 'org-mode-hook 'howm-mode) ;; Make org compatible with howm
 
 ;; ORG Present settings
  
@@ -104,6 +102,12 @@
 		 (visual-line-mode 1)
 		 ))))
 
+;;; Org-Agenda related configuration
+
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
+
+
 ;; Load various emacs languages
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -114,27 +118,33 @@
   
 
 
-;; HOWM Configurations
+;; Dashboard Configuration, used in conjunction with emacs bookmark
+
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+(setq dashboard-week-agenda t)
+(setq dashboard-banner-logo-title
+ "
+ F1 to return to main menu
+ C-c A for agenda
+ " )
+
+(setq dashboard-footer-messages '("." "~"))
+(setq dashboard-items '((recents   . 10)
+                        (bookmarks . 5)
+                        (agenda    . 10)
+                        ))
+(setq dashboard-startupify-list '(dashboard-insert-banner-title
+				  dashboard-insert-navigator
+				  dashboard-insert-newline
+                                  dashboard-insert-items
+                                  dashboard-insert-newline
+				  dashboard-insert-footer
+				  ;dashboard-insert-init-info ;; If you want to see startup time
+                               ))
 
 
-(use-package howm
-  :ensure t
-  :init
-  (require 'howm-org)
-  (setq howm-directory "C:/Dropbox/2025/2025_log/")
-  (setq howm-file-name-format "%Y-%m-%d-%H%M%S.org")
-  ;; Makes HOWM compatible with org-mode
-  (setq howm-view-title-header "*")
-  ;(setq howm-dtime-format (format "%s" (cdr org-time-stamp-custom-formats)))
-  ;(setq howm-view-title-header "#+title: ")
-  (setq howm-dtime-format (format "#+date: %s" (cdr org-time-stamp-custom-formats)))
-  (setq howm-insert-date-format "<%s>")
-
-  )
-
-
-(howm-menu)
-
+(global-set-key [f1] 'dashboard-open)
 
 ;; Macros I like (https://github.com/cloudstreet-dev/Emacs-for-Goodness-Sake/blob/main/11-macros-registers.md was very helpful)
 (defalias 'bible-verse-labeler
