@@ -104,6 +104,7 @@
 
 ;;; Org-Agenda related configuration
 
+(global-set-key (kbd "C-c a") #'org-agenda)
 
 (setq org-agenda-files (directory-files-recursively "C://Dropbox//2025" "\\.org$"))
 (setq org-agenda-inhibit-startup t)
@@ -146,7 +147,7 @@
 
 
 (howm-menu)
-
+(global-set-key [f1] 'howm-menu)
 
 ;; Macros I like (https://github.com/cloudstreet-dev/Emacs-for-Goodness-Sake/blob/main/11-macros-registers.md was very helpful)
 (defalias 'bible-verse-labeler
