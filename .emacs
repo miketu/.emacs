@@ -148,8 +148,14 @@
 
 (howm-menu)
 (global-set-key [f1] 'howm-menu)
+;; Macros I like (https://github.com/cloudstreet-dev/Emacs-for-Goodness-Sake/blob/main/11-macros-registers.md was very helpful) for exegesis
+;; Should install SBL fonts as recommended by https://github.com/emacselements/my-ancient-greek-tweaks/blob/main/my-ancient-greek-tweaks.el
 
-;; Macros I like (https://github.com/cloudstreet-dev/Emacs-for-Goodness-Sake/blob/main/11-macros-registers.md was very helpful)
+
 (defalias 'bible-verse-labeler
    (kmacro "M-x q u e r y - r e p l a c e - r e g e x p <return> \\ ( 0 - <backspace> <backspace> [ 0 - 9 ] + \\ ) <return> \\ \\ v s { \\ 1 } <return> y q M-b"))
 (global-set-key [f5] 'bible-verse-labeler)
+
+(set-fontset-font "fontset-default" 'greek (font-spec :family "SBL BibLit" :size 22))
+(set-fontset-font "fontset-default" 'hebrew (font-spec :family "SBL BibLit" :size 25))
+
