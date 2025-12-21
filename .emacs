@@ -7,6 +7,7 @@
 ;;   EMACS: Org-mode for general notes/documentation with howm as the main engine
 ;;   Zotero and betterbibextension (output all reading to a .bib file)
 ;;   R language  (Decent analysis software, I'm strongest in this language, I like how it resembles mathematics. )
+;;   Excalidraw is a good general purpose drawing software for SVG and diagram drawing. 
 ;;   LaTeX is interacted with via EMACS or R, but having a general idea of how to use it is probably helpful too. 
 ;;   File syncing service (I use dropbox because I have an old account, but one can use syncthing r an equivalent resource)
 ;;   Microsoft Word/Powerpoint/Excel is neccesary for most places I've worked at, so I can't avoid it. 
@@ -117,6 +118,33 @@
    (python .t)
    ))
   
+;; Calfw-Settings
+
+(require 'calfw-ical)
+(require 'calfw-howm)
+(require 'calfw-org)
+
+(defun gcal-open ()
+  (interactive)
+  (calfw-ical-open-calendar "https://calendar.google.com/calendar/ical/mtu777%40gmail.com/private-72632e0fe4bc56f1eed6d9abb4c545bc/basic.ics")
+)
+
+
+
+(defun gcal-howm ()
+  "Organize windows based on howardism article https://www.howardism.org/Technical/Emacs/new-window-manager.html"
+  (interactive)
+  (delete-other-windows)
+  (howm-menu)
+  (split-window-horizontally)
+  (other-window 1)
+  (calfw-ical-open-calendar "https://calendar.google.com/calendar/ical/mtu777%40gmail.com/private-72632e0fe4bc56f1eed6d9abb4c545bc/basic.ics")
+  (other-window 1)
+  )
+
+(global-set-key [f2] 'gcal-howm)
+
+
 
 
 
@@ -135,7 +163,7 @@
   ;(setq howm-view-title-header "#+title: ")
   (setq howm-dtime-format (format "#+date: %s" (cdr org-time-stamp-custom-formats)))
   (setq howm-insert-date-format "<%s>")
-;
+
   )
 (defadvice howm-exclude-p (around howm-suffix-only (filename) activate) ;; From https://github.com/kaorahi/howm/issues/83#issuecomment-3181303383
   ad-do-it
@@ -158,4 +186,5 @@
 
 (set-fontset-font "fontset-default" 'greek (font-spec :family "SBL BibLit" :size 22))
 (set-fontset-font "fontset-default" 'hebrew (font-spec :family "SBL BibLit" :size 25))
+
 
