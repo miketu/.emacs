@@ -173,6 +173,12 @@
             (not (or (file-directory-p filename)
                      (string-match "[.]org$" filename))))))
 
+(setopt howm-recent-excluded-files-regexp
+        (concat
+         (regexp-quote (expand-file-name "0000-00-00-000000.org"
+         ))))
+
+
 
 (howm-menu)
 (global-set-key [f1] 'howm-menu)
@@ -186,5 +192,6 @@
 
 (set-fontset-font "fontset-default" 'greek (font-spec :family "SBL BibLit" :size 22))
 (set-fontset-font "fontset-default" 'hebrew (font-spec :family "SBL BibLit" :size 25))
+
 
 
