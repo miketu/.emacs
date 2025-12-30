@@ -1,0 +1,40 @@
+#+TITLE: 
+#+AUTHOR:     
+#+EMAIL:     
+#+DATE:
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [letter,12pt]
+#+OPTIONS: toc:nil num:nil
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+LATEX_HEADER: \usepackage{paracol}
+
+#+LATEX_HEADER: \usepackage[english,greek,hebrew]{babel}
+#+LATEX_HEADER: \usepackage{alphabeta}
+#+COMMENT: 
+
+
+
+#+LATEX_HEADER: \usepackage[utf8x]{inputenc}
+#+LATEX_HEADER: \usepackage{scripture}
+#+LATEX_HEADER: \scripturesetup{font=\large}
+
+#+BEGIN_export latex
+\begin{paracol}{1}
+
+\begin{scripture}
+\begin{poetry}
+
+\end{poetry}
+    \end{scripture}
+    
+- Insert Citation here
+
+
+\end{paracol}
+#+END_Export
+
+
+
+
+
+
