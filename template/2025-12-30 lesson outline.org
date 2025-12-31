@@ -1,0 +1,30 @@
+#+TITLE: 
+#+AUTHOR:     
+#+EMAIL:     
+#+DATE:
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [letterpaper,11pt]
+#+OPTIONS: toc:nil num:nil
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+LATEX_HEADER: \usepackage{chronosys}
+‎
+* EXEGETICAL NOTES                                                   :noexport:
+
+
+
+* 1. Review (The Song of Moses - Deuteronomy 32)
+
+| Table             |  Section |
+|-------------------+----------|
+| Heading           |          |
+| ‎ ‎ ‎ ‎ ‎ ‎ Subheading | 32:19-30 |
+
+
+* 2. ...
+
+
+* 3. ...
+
+
+
