@@ -1,0 +1,48 @@
+#+TITLE: 
+#+AUTHOR:     
+#+EMAIL:     
+#+DATE:
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [letter,9.5pt]
+#+OPTIONS: toc:nil num:nil
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+LATEX_HEADER: \usepackage{paracol}
+#+LATEX_HEADER: \usepackage{alphabeta}
+#+LATEX_HEADER: \usepackage[english,ancientgreek,hebrew]{babel}
+#+COMMENT: query-replace-regexp ->   \([0-9]+\)    -> \\vs{\1} to turn numbers into verses
+
+
+
+#+LATEX_HEADER: \usepackage[utf8x]{inputenc}
+#+LATEX_HEADER: \usepackage{scripture}
+#+LATEX_HEADER: \scripturesetup{font=\large}
+
+#+BEGIN_export latex
+\begin{paracol}{2}
+\begin{scripture}
+%\begin{poetry}
+
+
+\selectlanguage{hebrew}
+
+\ch{1רֶץ׃  
+
+\switchcolumn
+
+\selectlanguage{ancientgreek}
+\ch{1}ἀρχῇ
+
+ 
+
+
+
+%\end{poetry}
+\end{scripture}
+\end{paracol}
+#+END_Export
+
+
+
+
+
+
