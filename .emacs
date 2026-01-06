@@ -1,13 +1,12 @@
-
 ;; .emacs file for Michael Tu
 
 
 
 ;; My workflow revolves around the following items:
-;;   EMACS: Org-mode for general notes/documentation with howm as the main engine
-;;   Zotero and betterbibextension (output all reading to a .bib file)
+;;   Zotero with betterbibextension (output all reading to a .bib file) and markdown 
+
+;;   EMACS: Org-mode for general notes/documentation with howm as the main engine for quote management
 ;;   R language  (Decent analysis software, I'm strongest in this language, I like how it resembles mathematics. )
-;;   Excalidraw is a good general purpose drawing software for SVG and diagram drawing. 
 ;;   LaTeX is interacted with via EMACS or R, but having a general idea of how to use it is probably helpful too. 
 ;;   File syncing service (I use dropbox because I have an old account, but one can use syncthing r an equivalent resource)
 ;;   Microsoft Word/Powerpoint/Excel is neccesary for most places I've worked at, so I can't avoid it. 
@@ -76,6 +75,37 @@
 
 (add-hook 'org-mode-hook #'visual-line-mode)) ;;Make org start in visual line mode
 
+;; Load various emacs languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((R . t)
+   (latex .t)
+   (python .t)
+   ))
+
+
+;; Pasting images org mode
+
+
+(defvar jjgr-org-mode-paste-image-width 800) ; https://www.reddit.com/r/emacs/comments/jczcv0/paste_an_image_into_an_org_file_windows/ Allows copy and paste with org
+(defun mtu-paste-image (file-name)
+  (interactive "F")
+  (let ((type (file-name-extension file-name)))
+    (unless (member (upcase type) '("JPG" "JPEG" "PNG" "GIF"))
+      (setq file-name (concat file-name ".png")))
+    (let* ((command (format "(Get-Clipboard -Format Image).save(\"%s\")"
+                            (expand-file-name file-name)))
+           (output (call-process "powershell.exe" nil "*powershell*" nil "-Command" command)))
+      (if (not (zerop output))
+          (message "Unable to save image. Probably clipboard is empty.")
+        (when jjgr-org-mode-paste-image-width
+          (insert (format "#+ATTR_ORG: :width %s\n" 800))) ;;INPUT_VARIABLE: Width of image pasted
+        (insert "[[file:" file-name "]]\n")
+        (org-display-inline-images)))))
+
+
+
+
 ;; ORG Present settings
  
 (setq visual-fill-column-width 110
@@ -107,42 +137,8 @@
 
 (global-set-key (kbd "C-c a") #'org-agenda)
 
-(setq org-agenda-files (directory-files-recursively "C://Dropbox//2025" "\\.org$"))
+(setq org-agenda-files (directory-files-recursively "C://Dropbox//2026" "\\.org$"))
 (setq org-agenda-inhibit-startup t)
-
-;; Load various emacs languages
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((R . t)
-   (latex .t)
-   (python .t)
-   ))
-  
-;; Calfw-Settings
-
-(require 'calfw-ical)
-(require 'calfw-howm)
-(require 'calfw-org)
-
-(defun gcal-open ()
-  (interactive)
-  (calfw-ical-open-calendar "https://calendar.google.com/calendar/ical/mtu777%40gmail.com/private-72632e0fe4bc56f1eed6d9abb4c545bc/basic.ics")
-)
-
-
-
-(defun gcal-howm ()
-  "Organize windows based on howardism article https://www.howardism.org/Technical/Emacs/new-window-manager.html"
-  (interactive)
-  (delete-other-windows)
-  (howm-menu)
-  (split-window-horizontally)
-  (other-window 1)
-  (calfw-ical-open-calendar "https://calendar.google.com/calendar/ical/mtu777%40gmail.com/private-72632e0fe4bc56f1eed6d9abb4c545bc/basic.ics")
-  (other-window 1)
-  )
-
-(global-set-key [f2] 'gcal-howm)
 
 
 
@@ -155,15 +151,15 @@
   :ensure t
   :init
   (require 'howm-org)
-  (setq howm-directory "C:/Dropbox/2025/")
-  (setq howm-file-name-format "%Y-%m-%d-%H%M%S.org")
+  (setq howm-directory "C:/Dropbox/2026/")
+  (setq howm-file-name-format "%Y-%m-%d-%H%M%S log.org")
   ;; Makes HOWM compatible with org-mode
   (setq howm-view-title-header "*")
   ;(setq howm-dtime-format (format "%s" (cdr org-time-stamp-custom-formats)))
   ;(setq howm-view-title-header "#+title: ")
   (setq howm-dtime-format (format "#+date: %s" (cdr org-time-stamp-custom-formats)))
   (setq howm-insert-date-format "<%s>")
-
+;
   )
 (defadvice howm-exclude-p (around howm-suffix-only (filename) activate) ;; From https://github.com/kaorahi/howm/issues/83#issuecomment-3181303383
   ad-do-it
@@ -180,8 +176,57 @@
 
 
 
-(howm-menu)
 (global-set-key [f1] 'howm-menu)
+
+
+
+
+;; Browser and Checkup
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe")
+
+(defun routine-checkup ()
+  (interactive)
+  (browse-url "https://theoldreader.com/")
+  (browse-url "https://mail.google.com/mail/u/0/#inbox")
+  (browse-url "https://web.whatsapp.com/")
+  (browse-url "https://messages.google.com/web/")
+  (browse-url "[GOOGLE PHOTO LINK]")
+  (browse-url "https://calendar.google.com/calendar/u/0/r")
+  )
+
+(global-set-key [f2] 'routine-checkup)
+
+
+
+;; Calfw-Settings
+
+(require 'calfw-ical)
+(require 'calfw-howm)
+(require 'calfw-org)
+
+(defun gcal-open ()
+  (interactive)
+  (calfw-ical-open-calendar "[GCAL LINK]")
+)
+
+(defun gcal-howm ()
+  "Organize windows based on howardism article https://www.howardism.org/Technical/Emacs/new-window-manager.html"
+  (interactive)
+  (delete-other-windows)
+  (howm-menu)
+  (split-window-horizontally)
+  (other-window 1)
+  (calfw-ical-open-calendar "[GCAL LINK]")
+  (other-window 1)
+  )
+
+(global-set-key [f3] 'gcal-howm)
+
+
+
+
 ;; Macros I like (https://github.com/cloudstreet-dev/Emacs-for-Goodness-Sake/blob/main/11-macros-registers.md was very helpful) for exegesis
 ;; Should install SBL fonts as recommended by https://github.com/emacselements/my-ancient-greek-tweaks/blob/main/my-ancient-greek-tweaks.el
 
@@ -193,5 +238,7 @@
 (set-fontset-font "fontset-default" 'greek (font-spec :family "SBL BibLit" :size 22))
 (set-fontset-font "fontset-default" 'hebrew (font-spec :family "SBL BibLit" :size 25))
 
+;; Default Loading Screen
 
-
+(howm-menu)
+;(gcal-howm)
