@@ -1,6 +1,7 @@
 1) Remove as much windows software default as possible
 2) https://mirrors.ibiblio.org/gnu/emacs/windows/emacs-30/ -> install to c:/emacs
 3) https://github.com/miketu/.emacs/blob/main/.emacs -> copy and paste over ~/.emacs
+(Next time also follow this https://web.archive.org/web/20250805043443/https://emacselements.com/installing-emacs-windows.html)
 	M-x package-list
 		Helm
 		Howm
@@ -33,6 +34,7 @@
 	https://github.com/OpenEuphoria/euphoria/releases
 	https://jmeubank.github.io/tdm-gcc/
  	https://github.com/OpenEuphoria/editors/tree/master/emacs
+
 
 
 
