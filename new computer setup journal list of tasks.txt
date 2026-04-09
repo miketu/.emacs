@@ -10,7 +10,6 @@ calfw-howm
 calfw-ical
 calfw-org
 [Update F2 command with google photos directory in .emacs]
-Choose leuven-dark theme
 Install grep for windows https://gnuwin32.sourceforge.net/packages/grep.htm
 
 4. Download dropbox https://www.dropbox.com/desktop -> save to c:/Dropbox/
