@@ -27,6 +27,7 @@ install.packages("tidyverse")
 install using installer form python.org
 py -m pip install --user pipx
 py -m pipx ensurepath
+pip install uv
 
 10. Euphoria Language
 https://github.com/OpenEuphoria/euphoria/releases
