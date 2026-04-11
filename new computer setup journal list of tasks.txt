@@ -21,23 +21,23 @@ reg.exe add "HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\I
 8, Download Rstudio (argh... this is so big!) very lame..
 Tools -> Options -> Disable all those temp files
 install.packages("tidyverse")
-
-9.Python
+9. Download miktex https://miktex.org/download
+10.Python
 install using installer form python.org
 py -m pip install --user pipx
 py -m pipx ensurepath
 pip install uv
 
-10. Euphoria Language
+11. Euphoria Language
 https://github.com/OpenEuphoria/euphoria/releases
 https://jmeubank.github.io/tdm-gcc/
 https://github.com/OpenEuphoria/editors/tree/master/emacs
 
-11. Firefox
+12. Firefox
    Bookmark StepBible.org (download it also for local use)
    Excalidraw bookmark
    
-12. Change your PATH variable in windows
+13. Change your PATH variable in windows
  HOME set to c:/HOME/
  Right click on DESKTOP and set desktop to c:/Desktop/
 
