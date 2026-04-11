@@ -40,6 +40,7 @@ https://github.com/OpenEuphoria/editors/tree/master/emacs
 13. Change your PATH variable in windows
  HOME set to c:/HOME/
  Right click on DESKTOP and set desktop to c:/Desktop/
+14. Download Zotero
 
 - Computer Backup Policy
     - Date everything everything and have long filenames that are descriptive. 
