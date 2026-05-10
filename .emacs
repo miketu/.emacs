@@ -237,6 +237,10 @@
 
 (set-fontset-font "fontset-default" 'greek (font-spec :family "SBL BibLit" :size 22))
 (set-fontset-font "fontset-default" 'hebrew (font-spec :family "SBL BibLit" :size 25))
+  (setq org-latex-pdf-process ;; Experimental org-latex 
+     '("xelatex -interaction nonstopmode -output-directory %o %f"
+       "xelatex -interaction nonstopmode -output-directory %o %f"))
+
 
 ;; Default Loading Screen
 
