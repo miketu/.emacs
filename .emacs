@@ -1,16 +1,7 @@
 ;; .emacs file for Michael Tu
 
 
-
-;; My workflow revolves around the following items:
-;;   Zotero with betterbibextension (output all reading to a .bib file) and markdown 
-
-;;   EMACS: Org-mode for general notes/documentation with howm as the main engine for quote management
-;;   R language  (Decent analysis software, I'm strongest in this language, I like how it resembles mathematics. )
-;;   LaTeX is interacted with via EMACS or R, but having a general idea of how to use it is probably helpful too. 
-;;   File syncing service (I use dropbox because I have an old account, but one can use syncthing r an equivalent resource)
-;;   Microsoft Word/Powerpoint/Excel is neccesary for most places I've worked at, so I can't avoid it. 
-
+;; See file in this directory for my "fresh install" checklist
 
 ;; Refresher Hints for EMACS
 ;; Hints: Use M-x customize-group if you need to something
