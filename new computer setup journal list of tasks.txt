@@ -50,7 +50,7 @@ Right click on DESKTOP and set desktop to c:/Desktop/
      - Date everything everything and have long filenames that are descriptive.
 
    - Short Term Tasks/Someday
-     - Google photos, gmail, and calender is probably my "temporary buffer" of tasks/etc. 
+     - Google photos, post-it notes, gmail, and calender is probably my "temporary buffer" of tasks/etc. 
    - Reading/Researching Notes
      - Zotero is used for reading log/miscellaneous notes, although commonplaces/etc are stored in *.org file per year
      - github.com/miketu/.emacs file holds important information about computer/backup systems and github.com/miketu/loci store occasional backups of notes/commonplaces
