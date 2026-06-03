@@ -2,9 +2,11 @@ See https://github.com/miketu/.emacs/blob/main/new%20computer%20setup%20journal%
 
 
 1. Remove as much windows software default as possible
+
+2. Download and Sync zotero and Dropbox https://www.dropbox.com/desktop to get my core files/notes. Zotero is the primary filesystem archiver tool. 
    
-2. https://mirrors.ibiblio.org/gnu/emacs/windows/emacs-30/ -> install to c:/emacs
-3. https://github.com/miketu/.emacs/blob/main/.emacs -> copy and paste over ~/.emacs
+3. https://mirrors.ibiblio.org/gnu/emacs/windows/emacs-30/ -> install to c:/emacs
+ https://github.com/miketu/.emacs/blob/main/.emacs -> copy and paste over ~/.emacs
 M-x package-list
 Helm
 Howm
@@ -14,45 +16,47 @@ calfw-org
 [Update F2 command with google photos directory in .emacs]
 Install grep for windows https://gnuwin32.sourceforge.net/packages/grep.htm
 
-4. Download dropbox https://www.dropbox.com/desktop -> save to c:/Dropbox/
-5. Choose your microsoft windows license  for office
+
+4. Choose your microsoft windows license  for office
 Restore old right click menu (source: https://learn.microsoft.com/en-us/answers/questions/2287432/(article)-restore-old-right-click-context-menu-in)
 reg.exe add "HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
-6.Download R https://cran.r-project.org/mirrors.html
-7.Download Rtools
-8, Download Rstudio (argh... this is so big!) very lame..
+5.Download R https://cran.r-project.org/mirrors.html
+Download Rtools
+6, Download Rstudio (argh... this is so big!) very lame..
 Tools -> Options -> Disable all those temp files
 install.packages("tidyverse")
-9. Download miktex https://miktex.org/download
-10.Python
+7. Download miktex https://miktex.org/download
+8.Python
 install using installer form python.org
 py -m pip install --user pipx
 py -m pipx ensurepath
 pip install uv
 
-11. Euphoria Language
+9. Euphoria Language
 https://github.com/OpenEuphoria/euphoria/releases
 https://jmeubank.github.io/tdm-gcc/
 https://github.com/OpenEuphoria/editors/tree/master/emacs
 
-12. Firefox
+10. Firefox
   Bookmark StepBible.org (download it also for local use)
-  Excalidraw bookmark
+  Excalidraw PWA install
+  
    
-13. Change your PATH variable in windows
+11. Change your PATH variable in windows
 HOME set to c:/HOME/
 Right click on DESKTOP and set desktop to c:/Desktop/
 
-1. Download Zotero
-
-# Computer Backup Policy
+12. Download ANKI and sync flashcards.
+    
+    Computer Backup Policy
    - General policies
      - Date everything everything and have long filenames that are descriptive.
 
    - Short Term Tasks/Someday
-     - Google photos, post-it notes, gmail, and calender is probably my "temporary buffer" of tasks/etc. 
+     - Google photos, gmail, and calender is probably my "temporary buffer" of tasks/etc. 
    - Reading/Researching Notes
      - Zotero is used for reading log/miscellaneous notes, although commonplaces/etc are stored in *.org file per year
      - github.com/miketu/.emacs file holds important information about computer/backup systems and github.com/miketu/loci store occasional backups of notes/commonplaces
      - Files should ideally be saved in text parseable format (I use org mode as primary, secondary files are markdown), and then GREP/HOWM/org-agenda (such as used in my emacs configuration) can be used to rapidly search.
      - Periodic backups to other web-based sources (Dropbox, Github) of core documents. A few backups a year to physical harddrives in multiple location.
+
