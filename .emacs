@@ -1,7 +1,15 @@
 ;; .emacs file for Michael Tu
 
 
-;; See file in this directory for my "fresh install" checklist
+
+;; My workflow revolves around the following items:
+;;   Zotero with betterbibextension (output all reading to a .bib file) and markdown 
+;;   EMACS: Org-mode for general notes/documentation with howm as the main engine for quote management
+;;   R language  (Decent analysis software, I'm strongest in this language, I like how it resembles mathematics. )
+;;   LaTeX is interacted with via EMACS or R, but having a general idea of how to use it is probably helpful too. 
+;;   File syncing service (I use dropbox because I have an old account, but one can use syncthing r an equivalent resource)
+;;   Microsoft Word/Powerpoint/Excel is neccesary for most places I've worked at, so I can't avoid it. 
+
 
 ;; Refresher Hints for EMACS
 ;; Hints: Use M-x customize-group if you need to something
@@ -128,7 +136,7 @@
 
 (global-set-key (kbd "C-c a") #'org-agenda)
 
-(setq org-agenda-files (directory-files-recursively "C://Dropbox//2026" "\\.org$"))
+(setq org-agenda-files (directory-files-recursively "C://Dropbox//" "\\.org$"))
 (setq org-agenda-inhibit-startup t)
 
 
@@ -142,7 +150,7 @@
   :ensure t
   :init
   (require 'howm-org)
-  (setq howm-directory "C:/Dropbox/2026/")
+  (setq howm-directory "C:/Dropbox/")
   (setq howm-file-name-format "%Y-%m-%d-%H%M%S log.org")
   ;; Makes HOWM compatible with org-mode
   (setq howm-view-title-header "*")
@@ -150,6 +158,7 @@
   ;(setq howm-view-title-header "#+title: ")
   (setq howm-dtime-format (format "#+date: %s" (cdr org-time-stamp-custom-formats)))
   (setq howm-insert-date-format "<%s>")
+  (setq howm-menu-file "./log/0000-00-00-000000.org")
 ;
   )
 (defadvice howm-exclude-p (around howm-suffix-only (filename) activate) ;; From https://github.com/kaorahi/howm/issues/83#issuecomment-3181303383
@@ -162,7 +171,7 @@
 
 (setopt howm-recent-excluded-files-regexp
         (concat
-         (regexp-quote (expand-file-name "0000-00-00-000000.org"
+         (regexp-quote (expand-file-name "C:/Dropbox/log/0000-00-00-000000.org"
          ))))
 
 
@@ -175,7 +184,7 @@
 ;; Browser and Checkup
 
 (setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe")
+      browse-url-generic-program "C:\\Program Files\\Mozilla Firefox\\firefox.exe")
 
 (defun routine-checkup ()
   (interactive)
@@ -183,7 +192,7 @@
   (browse-url "https://mail.google.com/mail/u/0/#inbox")
   (browse-url "https://web.whatsapp.com/")
   (browse-url "https://messages.google.com/web/")
-  (browse-url "[GOOGLE PHOTO LINK]")
+  (browse-url "[REDACTED]")
   (browse-url "https://calendar.google.com/calendar/u/0/r")
   )
 
@@ -228,12 +237,7 @@
 
 (set-fontset-font "fontset-default" 'greek (font-spec :family "SBL BibLit" :size 22))
 (set-fontset-font "fontset-default" 'hebrew (font-spec :family "SBL BibLit" :size 25))
-  (setq org-latex-pdf-process ;; Experimental org-latex 
+   (setq org-latex-pdf-process ;; Experimental 
      '("xelatex -interaction nonstopmode -output-directory %o %f"
        "xelatex -interaction nonstopmode -output-directory %o %f"))
 
-
-;; Default Loading Screen
-
-(howm-menu)
-;(gcal-howm)
