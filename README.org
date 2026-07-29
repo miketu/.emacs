@@ -1,3 +1,14 @@
+* About This File
+
+This is a description of my computation and filing system for achiving. This ./0 index/ folder functions as a global index to all my files in the event of backup. It consists of a few key elements.
+
+- Root of A Cloud Service Folder (for easy sync and backup)
+  - /0 Index/README.org : This HOWM  ORG emacs file that keeps records and allows me to have an informal filing system.
+  - /0 Index/LOCI.org : The "commonplace book" of my life. I keep this private in my github as a backup too.
+  - /0 Index/Zotero/ : Zotero system for the miscellaneous reading notes in my life. I keep backups in my private github too.
+  - /YYYY-MM-DD / ： I might also have a lot of date-stamped logs/etc that are in progress for this year.
+- ~/.emacs is public backup resource.  https://github.com/miketu/.emacs is a public reference for backups/etc.
+
 * <<< %menu%
 -------------------------------------
 Recent  (F2 -> Check Feeds)
@@ -18,16 +29,7 @@ Recent  (F2 -> Check Feeds)
  Settings: %"m"[Edit Menu]  [Preference]
   -----------------------------------
 
-* About This File
 
-This is the MTU filing system. This ./0 index/ folder functions as a global index to all my files in the event of backup. It consists of a few key elements.
-
-- Root of A Cloud Service Folder
-  - /0 Index/README.org : This HOWM  ORG emacs file that keeps records and allows me to have an informal filing system.
-  - /0 Index/LOCI.org : The "commonplace book" of my life. I keep this private in my github as a backup too.
-  - /0 Index/Zotero/ : Zotero system for the miscellaneous reading notes in my life. I keep backups in my private github too.
-  - /YYYY-MM-DD / ： I might also have a lot of date-stamped logs/etc that are in progress for this year.
-- ~/.emacs is public backup resource.  https://github.com/miketu/.emacs is a public reference for backups/etc.
   
  
 * <<< %Editing Menu%
