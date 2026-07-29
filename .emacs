@@ -2,18 +2,70 @@
 
 
 
-;; My workflow revolves around the following items:
-;;   Zotero with betterbibextension (output all reading to a .bib file) and markdown 
-;;   EMACS: Org-mode for general notes/documentation with howm as the main engine for quote management
-;;   R language  (Decent analysis software, I'm strongest in this language, I like how it resembles mathematics. )
-;;   LaTeX is interacted with via EMACS or R, but having a general idea of how to use it is probably helpful too. 
-;;   File syncing service (I use dropbox because I have an old account, but one can use syncthing r an equivalent resource)
-;;   Microsoft Word/Powerpoint/Excel is neccesary for most places I've worked at, so I can't avoid it. 
-
 
 ;; Refresher Hints for EMACS
 ;; Hints: Use M-x customize-group if you need to something
 ;; Hints: Emacs dired is very useful for browsing/finding things
+
+;; 1. Remove as much windows software default as possible
+
+;; 2. Download and Sync zotero and Dropbox https://www.dropbox.com/desktop to get my core files/notes. Zotero is the primary filesystem archiver tool. 
+   
+;; 3. https://mirrors.ibiblio.org/gnu/emacs/windows/emacs-30/ -> install to c:/emacs
+;;  https://github.com/miketu/.emacs/blob/main/.emacs -> copy and paste over ~/.emacs
+;; M-x package-list
+;; Helm
+;; Howm
+;; calfw-howm
+;; calfw-ical
+;; calfw-org
+;; [Update F2 command with google photos directory in .emacs]
+;; Install grep for windows https://gnuwin32.sourceforge.net/packages/grep.htm
+
+
+;; 4. Choose your microsoft windows license  for office
+;; Restore old right click menu (source: https://learn.microsoft.com/en-us/answers/questions/2287432/(article)-restore-old-right-click-context-menu-in)
+;; reg.exe add "HKCU\Software\Classes\CLSID{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
+;; 5.Download R https://cran.r-project.org/mirrors.html
+;; Download Rtools
+;; 6, Download Rstudio (argh... this is so big!) very lame..
+;; Tools -> Options -> Disable all those temp files
+;; install.packages("tidyverse")
+;; 7. Download miktex https://miktex.org/download
+;; 8.Python
+;; install using installer form python.org
+;; py -m pip install --user pipx
+;; py -m pipx ensurepath
+;; pip install uv
+
+;; 9. Euphoria Language
+;; https://github.com/OpenEuphoria/euphoria/releases
+;; https://jmeubank.github.io/tdm-gcc/
+;; https://github.com/OpenEuphoria/editors/tree/master/emacs
+
+;; 10. Firefox
+;;   Bookmark StepBible.org (download it also for local use)
+;;   Excalidraw PWA install
+  
+   
+;; 11. Change your PATH variable in windows
+;; HOME set to c:/HOME/
+;; Right click on DESKTOP and set desktop to c:/Desktop/
+
+;; 12. Download ANKI and sync flashcards.
+    
+;;     Computer Backup Policy
+;;    - General policies
+;;      - Date everything everything and have long filenames that are descriptive.
+
+;;    - Short Term Tasks/Someday
+;;      - Google photos, gmail, and calender is probably my "temporary buffer" of tasks/etc. 
+;;    - Reading/Researching Notes
+;;      - Zotero is used for reading log/miscellaneous notes, although commonplaces/etc are stored in *.org file per year
+;;      - github.com/miketu/.emacs file holds important information about computer/backup systems and github.com/miketu/loci store occasional backups of notes/commonplaces
+;;      - Files should ideally be saved in text parseable format (I use org mode as primary, secondary files are markdown), and then GREP/HOWM/org-agenda (such as used in my emacs configuration) can be used to rapidly search.
+;;      - Periodic backups to other web-based sources (Dropbox, Github) of core documents. A few backups a year to physical harddrives in multiple location.
+
 
 
 
@@ -140,7 +192,29 @@
 (setq org-agenda-inhibit-startup t)
 
 
+;; org tufte
 
+(eval-after-load "ox-latex"
+  '(add-to-list 'org-latex-classes
+                '("tufte-handout"
+                  "\\documentclass{tufte-handout}"
+                  ("\\section{%s}" . "\\section*{%s}")
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+(add-to-list 'org-structure-template-alist '("mn" . "latex"))
+
+;; Then still define a custom tempo template if you want pre-filled content
+(require 'org-tempo)
+(with-eval-after-load 'org-tempo
+  (tempo-define-template "org-marginnote"
+    '("#+BEGIN_latex" n
+      "\\marginnote[]{" p "}" n
+      "#+END_latex" >)
+    "<mn"
+    "Insert marginnote"))
 
 
 ;; howm
@@ -151,14 +225,14 @@
   :init
   (require 'howm-org)
   (setq howm-directory "C:/Dropbox/")
-  (setq howm-file-name-format "%Y-%m-%d-%H%M%S log.org")
+  (setq howm-file-name-format "./%Y-%m-%d-%H%M%S log/%Y-%m-%d-%H%M%S log.org")
   ;; Makes HOWM compatible with org-mode
   (setq howm-view-title-header "*")
   ;(setq howm-dtime-format (format "%s" (cdr org-time-stamp-custom-formats)))
   ;(setq howm-view-title-header "#+title: ")
   (setq howm-dtime-format (format "#+date: %s" (cdr org-time-stamp-custom-formats)))
   (setq howm-insert-date-format "<%s>")
-  (setq howm-menu-file "./log/0000-00-00-000000.org")
+  (setq howm-menu-file "./0 index/README.org")
 ;
   )
 (defadvice howm-exclude-p (around howm-suffix-only (filename) activate) ;; From https://github.com/kaorahi/howm/issues/83#issuecomment-3181303383
@@ -171,7 +245,7 @@
 
 (setopt howm-recent-excluded-files-regexp
         (concat
-         (regexp-quote (expand-file-name "C:/Dropbox/log/0000-00-00-000000.org"
+         (regexp-quote (expand-file-name "C:/Dropbox/0 index/README.org"
          ))))
 
 
@@ -192,7 +266,7 @@
   (browse-url "https://mail.google.com/mail/u/0/#inbox")
   (browse-url "https://web.whatsapp.com/")
   (browse-url "https://messages.google.com/web/")
-  (browse-url "[REDACTED]")
+  (browse-url "https://photos.google.com/")
   (browse-url "https://calendar.google.com/calendar/u/0/r")
   )
 
@@ -241,3 +315,21 @@
      '("xelatex -interaction nonstopmode -output-directory %o %f"
        "xelatex -interaction nonstopmode -output-directory %o %f"))
 
+
+;; Default Loading Screen
+
+(howm-menu)
+;(gcal-howm)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes '(leuven-dark))
+ '(package-selected-packages '(calfw-howm calfw-ical calfw-org csv-mode helm)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
